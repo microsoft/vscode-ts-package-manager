@@ -1,6 +1,6 @@
 {
   "name": "@vscode/ts-package-manager",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Microsoft Corporation",
   "license": "MIT",
   "engines": {
@@ -10,6 +10,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*.js",
+    "dist/**/*.d.ts",
     "node-maintainer/**/*"
   ],
   "devDependencies": {
