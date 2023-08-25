@@ -1,6 +1,16 @@
 {
   "name": "@vscode/ts-package-manager",
-  "module": "packageManager.ts",
+  "version": "0.0.1",
+  "author": "Microsoft Corporation",
+  "license": "MIT",
+  "engines": {
+    "node": "*"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist/**/*.js",
+    "node-maintainer/**/*"
+  ],
   "devDependencies": {
     "@types/node": "^20.5.6",
     "typescript": "^5.2.2"
