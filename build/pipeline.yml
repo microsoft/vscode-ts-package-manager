@@ -25,7 +25,7 @@ extends:
   template: azure-pipelines/npm-package/pipeline.yml@templates
   parameters:
     npmPackages:
-      - name: '@vscode/ts-package-manager'
+      - name: ts-package-manager
 
         buildSteps:
           - script: npm install
