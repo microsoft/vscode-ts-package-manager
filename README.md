@@ -1,33 +1,40 @@
-# Project
+# Package Manager
 
-> This repo has been populated by an initial template to help get you started. Please
-> make sure to update the content to build a great experience for community-building.
+This package is a web-compatible package manager built with tsserverlib
+compatibility in mind. It does not require a "real" filesystem or a "real" NPM
+installation, but instead uses [orogene](https://github.com/orogene/orogene)
+to perform package management operations.
 
-As the maintainer of this project, please make a few updates:
+It is largely a thin wrapper around Orogene's [node-maintainer WASM
+API](https://github.com/orogene/orogene/blob/abba96e6662c3465a498fbe6154ffcf2fe33fac4/crates/node-maintainer/src/wasm.rs).
 
-- Improving this README.MD file to provide a great experience
-- Updating SUPPORT.MD with content about this project's support experience
-- Understanding the security reporting process in SECURITY.MD
-- Remove this section from the README
+## Updating vendored `node-maintainer`
 
-## Contributing
+Currently, this package vendors a prebuilt version of `node-maintainer` into
+the `./node-maintainer` directory. This has to be manually built and updated
+as needed whenever there are desired changes from orogene.
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+To update the directory:
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+1. `rm -rf ./node-maintainer`
+2. clone https://github.com/orogene/orogene somewhere. See the [contributing
+   instructions](https://github.com/orogene/orogene/blob/abba96e6662c3465a498fbe6154ffcf2fe33fac4/CONTRIBUTING.md#getting-up-and-running)
+   for a guide on how to set up and build wasm modules.
+3. `mv /path/to/orogene/crates/node-maintainer/pkg ./node-maintainer`
+4. `git add node-maintainer && git commit -m 'updated node-maintainer'
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
+## A Note on Build Requirements
 
-## Trademarks
+To get this branch working, as of today (4/7/2023), you need to use a
+TypeScript release that includes [this
+commit](https://github.com/microsoft/TypeScript/commit/d23b7e7c52c471732079a9834bbfeef53b1a1697),
+which has been merged into `main`, but not released yet.
 
-This project may contain trademarks or logos for projects, products, or services. Authorized use of Microsoft 
-trademarks or logos is subject to and must follow 
-[Microsoft's Trademark & Brand Guidelines](https://www.microsoft.com/en-us/legal/intellectualproperty/trademarks/usage/general).
-Use of Microsoft trademarks or logos in modified versions of this project must not cause confusion or imply Microsoft sponsorship.
-Any use of third-party trademarks or logos are subject to those third-party's policies.
+In order to use an unreleased TypeScript with VS Code:
+
+1. At the `../..` (`vscode/extensions/`) level, you should `npm link` the
+   version of typescript you want.
+	1. Go to your `typescript` source checkout
+	2. Call `npm link`
+	3. Go to `vscode/extensions`
+	4. Call `npm link typescript`

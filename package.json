@@ -1,0 +1,11 @@
+{
+  "name": "@vscode/ts-package-manager",
+  "module": "packageManager.ts",
+  "devDependencies": {
+    "@types/node": "^20.5.6",
+    "typescript": "^5.2.2"
+  },
+  "scripts": {
+    "compile": "tsc -p tsconfig.json"
+  }
+}
