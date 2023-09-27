@@ -10,8 +10,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist/**/*.js",
-    "dist/**/*.d.ts",
-    "node-maintainer/**/*"
+    "dist/**/*.d.ts"
   ],
   "devDependencies": {
     "@types/node": "^20.5.6",
@@ -19,5 +18,8 @@
   },
   "scripts": {
     "compile": "tsc -p tsconfig.json"
+  },
+  "dependencies": {
+    "node-maintainer": "^0.3.33"
   }
 }
