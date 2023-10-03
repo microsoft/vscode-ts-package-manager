@@ -3,8 +3,8 @@
  *  Licensed under the MIT License. See License.txt in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import { basename, dirname, isAbsolute, join } from 'path';
-import { resolveManifest, initSync, Nassun, NodeMaintainer, Package } from '../node-maintainer/node_maintainer';
-import nmWasm from '../node-maintainer/node_maintainer_bg.wasm';
+import { resolveManifest, initSync, Nassun, NodeMaintainer, Package, Entry } from 'node-maintainer';
+import nmWasm from 'node-maintainer/node_maintainer_bg.wasm';
 
 initSync(dataURItoUint8Array(nmWasm as unknown as string));
 
@@ -79,7 +79,9 @@ export class PackageManager {
 			if (!pkgJson[packageType]) {
 				pkgJson[packageType] = {};
 			}
-			pkgJson[packageType][corgi.name] = `^${corgi.version}`;
+			if (corgi.name && corgi.version) {
+				pkgJson[packageType][corgi.name] = `^${corgi.version}`;
+			}
 		}
 
 		const stringified = JSON.stringify(pkgJson, undefined, 2);
@@ -105,17 +107,6 @@ export class PackageManager {
 		}
 		return JSON.parse(data.trim());
 	}
-}
-
-/**
- * An entry extracted from a package tarball.
- */
-interface Entry {
-	type: number;
-	mtime: number;
-	size: number;
-	path: string;
-	contents: ReadableStream<Uint8Array>;
 }
 
 export class ResolvedProject {
