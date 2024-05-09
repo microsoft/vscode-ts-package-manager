@@ -1,6 +1,6 @@
 {
   "name": "@vscode/ts-package-manager",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Microsoft Corporation",
   "license": "MIT",
   "engines": {
@@ -14,12 +14,12 @@
   ],
   "devDependencies": {
     "@types/node": "^20.5.6",
-    "typescript": "^5.2.2"
+    "typescript": "^5.4.5"
   },
   "scripts": {
     "compile": "tsc -p tsconfig.json"
   },
   "dependencies": {
-    "node-maintainer": "^0.3.33"
+    "node-maintainer": "^0.3.34"
   }
 }
